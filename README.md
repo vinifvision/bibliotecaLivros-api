@@ -104,7 +104,7 @@ Abaixo estão listados os endpoints disponíveis para teste via Insomnia ou Post
 
 ## 🗂 Estrutura de Pastas
 
-```json
+```
 biblioteca-api/
 ├── src/
 │ ├── controller/ <-- Lógica de Negócio e Requisições
