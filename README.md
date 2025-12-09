@@ -64,10 +64,10 @@ Abaixo estão listados os endpoints disponíveis para teste via Insomnia ou Post
 - **Corpo da Requisição (JSON):**
   ```json
   {
-    "titulo": "Coraline",
+    "titulo": "O oceano no fim do caminho",
     "autor": "Neil Gaiman",
-    "isbn": "978-8551006757",
-    "anoPublicacao": 2020,
+    "isbn": "978-8551009147",
+    "anoPublicacao": 2024,
     "disponivel": true
   }
   ```
