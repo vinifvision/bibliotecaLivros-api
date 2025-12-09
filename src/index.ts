@@ -4,14 +4,12 @@ import { AppDataSource } from "./data-source";
 import routes from "./routes";
 
 const app = express();
-app.use(express.json()); // Permite ler JSON no corpo da requisição
+app.use(express.json());
 
-// Conecta ao Banco de Dados e inicia o servidor
 AppDataSource.initialize()
   .then(() => {
     console.log("Banco de dados conectado!");
 
-    // Prefixo /api conforme sugerido na tabela [cite: 24]
     app.use("/api", routes);
 
     app.listen(3000, () => {

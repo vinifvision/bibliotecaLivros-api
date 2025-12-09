@@ -3,14 +3,11 @@ import { AppDataSource } from "../data-source";
 import { Livro } from "../entity/Livro";
 
 export class LivroController {
-  // Repositório direto do TypeORM (Data Access Object)
   private livroRepository = AppDataSource.getRepository(Livro);
 
-  // 1. Criar Livro (POST) [cite: 24]
   async create(req: Request, res: Response) {
     const { titulo, autor, isbn, anoPublicacao, disponivel } = req.body;
 
-    // Lógica de Negócio: Validação básica [cite: 20]
     if (!titulo || !autor || !isbn) {
       return res
         .status(400)
@@ -29,13 +26,11 @@ export class LivroController {
     return res.status(201).json(novoLivro);
   }
 
-  // 2. Ler Todos (GET) [cite: 24]
   async getAll(req: Request, res: Response) {
     const livros = await this.livroRepository.find();
     return res.json(livros);
   }
 
-  // 3. Ler por ID (GET) [cite: 24]
   async getOne(req: Request, res: Response) {
     const { id } = req.params;
     const livro = await this.livroRepository.findOneBy({ id: Number(id) });
@@ -46,7 +41,6 @@ export class LivroController {
     return res.json(livro);
   }
 
-  // 4. Atualizar (PUT) [cite: 24]
   async update(req: Request, res: Response) {
     const { id } = req.params;
     const { titulo, autor, isbn, anoPublicacao, disponivel } = req.body;
@@ -57,7 +51,6 @@ export class LivroController {
       return res.status(404).json({ message: "Livro não encontrado" });
     }
 
-    // Atualiza os campos
     livro.titulo = titulo ?? livro.titulo;
     livro.autor = autor ?? livro.autor;
     livro.isbn = isbn ?? livro.isbn;
@@ -68,7 +61,6 @@ export class LivroController {
     return res.json(livro);
   }
 
-  // 5. Excluir (DELETE) [cite: 24]
   async remove(req: Request, res: Response) {
     const { id } = req.params;
     const livro = await this.livroRepository.findOneBy({ id: Number(id) });
